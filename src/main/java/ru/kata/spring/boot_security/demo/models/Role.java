@@ -3,7 +3,6 @@ package ru.kata.spring.boot_security.demo.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Generated;
 import org.springframework.security.core.GrantedAuthority;
 
 @Entity

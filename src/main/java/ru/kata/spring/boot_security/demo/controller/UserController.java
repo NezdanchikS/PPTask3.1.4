@@ -12,14 +12,15 @@ import java.security.Principal;
 @Controller
 @RequestMapping
 public class UserController {
-    private UserService userService;
+    final private UserService userService;
 
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
-@GetMapping("/user")
-    public String showUser(Principal principal, Model model){
+
+    @GetMapping("/user")
+    public String showUser(Principal principal, Model model) {
         model.addAttribute("user", userService.loadUserByUsername(principal.getName()));
         return "users/show-user";
     }
