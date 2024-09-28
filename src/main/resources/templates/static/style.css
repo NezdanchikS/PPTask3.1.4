@@ -1,0 +1,46 @@
+body {
+    min-height: 100vh;
+    background-color: whitesmoke;
+}
+
+main {
+    height: 100vh;
+    max-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: whitesmoke;
+}
+
+a.btn-dark,
+a.btn-dark {
+    color: darkgray !important;
+    text-decoration: unset;
+}
+
+.something {
+    width: 100%;
+    max-width: 100%;
+    margin: 3rem auto;
+}
+
+.bordering {
+    border: solid 1pt #e0dcdc;
+}
+
+td {
+    margin: 0 30pt;
+    border-top: none;
+}
+
+form {
+    text-align: center;
+}
+
+.form-group {
+    margin: 10pt;
+}
+
+input[type="number"]:read-only {
+    background-color: #e9ecef;
+}
+

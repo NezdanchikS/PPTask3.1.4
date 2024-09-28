@@ -23,11 +23,14 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "surname")
-    private String surname;
+    @Column(name = "first_name")
+    private String firstName;
 
-    @Column(name = "salary")
-    private Integer salary;
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "age")
+    private Integer age;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
@@ -38,11 +41,13 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String username, String password, String surname, Integer salary, Set<Role> roles) {
+    public User(String username, String password, String firstName, String lastName, Integer age, Set<Role> roles) {
+
         this.username = username;
         this.password = password;
-        this.surname = surname;
-        this.salary = salary;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
         this.roles = roles;
     }
 

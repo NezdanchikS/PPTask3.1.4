@@ -34,9 +34,9 @@ public class StarterClass {
         Role role_admin = new Role("ROLE_ADMIN");
         roleService.addRole(role_admin);
 
-        User user = new User("user", "user", "usersurname", 1000, Collections.singleton(role_user));
+        User user = new User("user", "user", "userfirstname", "userlastname", 1000, Collections.singleton(role_user));
         userService.saveUser(user);
-        User admin = new User("admin", "admin", "adminsurname", 25, new HashSet<>(Arrays.asList(role_user, role_admin)));
+        User admin = new User("admin", "admin", "admin", "admin", 25, new HashSet<>(Arrays.asList(role_user, role_admin)));
         userService.saveUser(admin);
 
     }

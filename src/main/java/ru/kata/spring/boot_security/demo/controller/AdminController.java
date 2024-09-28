@@ -7,9 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.models.User;
 import ru.kata.spring.boot_security.demo.services.UserService;
+import ru.kata.spring.boot_security.demo.starter.UsersCreationDto;
+
 
 @Controller
-@RequestMapping
+@RequestMapping("/admin")
 public class AdminController {
 
     private final UserService userService;
@@ -19,46 +21,36 @@ public class AdminController {
         this.userService = userService;
     }
 
-    @GetMapping("/admin")
-    public String showStarterPage(Model model) {
-        model.addAttribute("users", userService.getAllUsers());
+    @GetMapping
+    public String showIndexPage(Model model) {
+        UsersCreationDto usersForm = new UsersCreationDto(userService.getAllUsers());
+        model.addAttribute("form", usersForm);
         return "users/admin";
     }
 
-    @GetMapping("/admin/{id}")
-    public String showUser(@PathVariable(value = "id") Long id, Model model) {
-        model.addAttribute("user", userService.getUser(id));
-        return "users/show-user";
-    }
-
-    @GetMapping("admin/new")
+    @GetMapping("new")
     public String showUserCreationPage(Model model) {
         model.addAttribute("user", new User());
 
-        return "users/create-user";
+        return "users/new";
     }
 
-    @PostMapping("/admin")
+    @PostMapping
     public String createNewUser(@ModelAttribute("user") User user) {
         userService.saveUser(user);
         return "redirect:/admin";
     }
 
-    @GetMapping("/admin/{id}/edit")
-    public String showUpdateUserPage(Model model, @PathVariable("id") long id) {
-        model.addAttribute("user", userService.getUser(id));
-        return "users/update-user";
-    }
-
-    @PatchMapping("/admin/{id}")
-    public String updateUser(@ModelAttribute("user") User user) {
-        userService.updateUser(user);
+    @PatchMapping
+    public String updateUser(@ModelAttribute UsersCreationDto form) {
+        userService.updateUser(form.getUsers());
         return "redirect:/admin";
     }
 
-    @DeleteMapping("/admin/{id}")
+    @DeleteMapping("{id}")
     public String deleteUser(@PathVariable("id") long id) {
         userService.deleteUser(id);
         return "redirect:/admin";
     }
+
 }
