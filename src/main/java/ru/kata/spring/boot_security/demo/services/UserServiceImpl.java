@@ -65,6 +65,7 @@ public class UserServiceImpl implements UserService {
     public void updateUser(List<User> users) {
         for (User user : users) {
             if (user.getUsername() != null) {
+                user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
                 userRepository.save(user);
             }
         }

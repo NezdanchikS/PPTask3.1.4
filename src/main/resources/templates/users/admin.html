@@ -177,8 +177,8 @@
                         <div class="mb-3 mx-auto col-10 col-md-8 col-lg-6">
                             <label for="inputState"><b>Role</b></label>
                             <select id="inputState" multiple size="2" class="form-control" th:field="*{form.users[__${userStat.index}__].roles}">
-                                <option th:value="1">ADMIN</option>
-                                <option th:value="2">USER</option>
+                                <option th:value="1">USER</option>
+                                <option th:value="2">ADMIN</option>
                             </select>
                         </div>
                     </form>
