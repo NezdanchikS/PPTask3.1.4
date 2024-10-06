@@ -6,8 +6,8 @@ body {
 main {
     height: 100vh;
     max-height: 100vh;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
     background-color: whitesmoke;
 }
 
@@ -18,9 +18,8 @@ a.btn-dark {
 }
 
 .something {
-    width: 100%;
-    max-width: 100%;
-    margin: 3rem auto;
+    width: 100rem;
+    margin: 1rem 2rem;
 }
 
 .bordering {
@@ -44,3 +43,6 @@ input[type="number"]:read-only {
     background-color: #e9ecef;
 }
 
+h5 {
+    padding-top: 5pt;
+}

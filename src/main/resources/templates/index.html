@@ -1,11 +1,168 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Spring Security Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <title>Site page</title>
+    <link href="/style.css" type="text/css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+            crossorigin="anonymous" defer></script>
+    <script src="/script.js" defer></script>
+
 </head>
 <body>
-<h1>Welcome to Index PAGE!</h1>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand">
+            <b id="header-username"></b> with roles: <span id="header-roles"></span>
+        </a>
+        <a href="/logout" class="d-flex btn-dark">Logout</a>
+    </div>
+</nav>
+
+<main class="d-flex flex-nowrap">
+
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-bg" style="width: 280px;">
+        <ul id="sidebar" class="nav nav-pills flex-column mb-auto">
+        </ul>
+    </div>
+
+
+    <div class="something">
+        <div>
+            <h1></h1>
+        </div>
+
+        <div id="id5">
+
+            <div id="page" class="bordering table-responsive fixed-table-body">
+
+                <div style="background-color: white; padding: 1rem;">
+                    <table class="table table-striped">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</main>
+
+<div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Edit user</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <form id="inputEditForm">
+                    <div class="mb-3 mx-auto col-10 col-md-8 col-lg-6">
+                        <label for="editInputId"><b>Id</b></label>
+                        <input type="number" class="form-control" id="editInputId" readonly>
+                    </div>
+                    <div class="mb-3 mx-auto col-10 col-md-8 col-lg-6">
+                        <label for="editInputFirstName"><b>First name</b></label>
+                        <input type="text" class="form-control" id="editInputFirstName">
+                    </div>
+                    <div class="mb-3 mx-auto col-10 col-md-8 col-lg-6">
+                        <label for="editInputLastName"><b>Last name</b></label>
+                        <input type="text" class="form-control" id="editInputLastName">
+                    </div>
+                    <div class="mb-3 mx-auto col-10 col-md-8 col-lg-6">
+                        <label for="editInputAge"><b>Age</b></label>
+                        <input type="number" class="form-control" id="editInputAge">
+                    </div>
+                    <div class="mb-3 mx-auto col-10 col-md-8 col-lg-6">
+                        <label for="editInputEmail"><b>Email</b></label>
+                        <input type="email" class="form-control" id="editInputEmail" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3 mx-auto col-10 col-md-8 col-lg-6">
+                        <label for="editInputPassword"><b>Password</b></label>
+                        <input type="text" class="form-control" id="editInputPassword">
+                    </div>
+                    <div class="mb-3 mx-auto col-10 col-md-8 col-lg-6">
+                        <label for="editInputState"><b>Role</b></label>
+                        <select id="editInputState" multiple size="2" class="form-control">
+                            <option value="1">USER</option>
+                            <option value="2">ADMIN</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" id="edit-button" class="btn btn-primary" form="inputEditForm">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Delete user</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <form id="inputDeleteForm">
+                    <div class="mb-3 mx-auto col-10 col-md-8 col-lg-6">
+                        <label for="deleteInputId"><b>Id</b></label>
+                        <input type="number" class="form-control" id="deleteInputId" disabled>
+                    </div>
+                    <div class="mb-3 mx-auto col-10 col-md-8 col-lg-6">
+                        <label for="deleteInputFirstName"><b>First name</b></label>
+                        <input type="text" class="form-control" id="deleteInputFirstName" disabled>
+                    </div>
+                    <div class="mb-3 mx-auto col-10 col-md-8 col-lg-6">
+                        <label for="deleteInputLastName"><b>Last name</b></label>
+                        <input type="text" class="form-control" id="deleteInputLastName" disabled>
+                    </div>
+                    <div class="mb-3 mx-auto col-10 col-md-8 col-lg-6">
+                        <label for="deleteInputAge"><b>Age</b></label>
+                        <input type="number" class="form-control" id="deleteInputAge" disabled>
+                    </div>
+                    <div class="mb-3 mx-auto col-10 col-md-8 col-lg-6">
+                        <label for="deleteInputEmail"><b>Email</b></label>
+                        <input type="email" class="form-control" id="deleteInputEmail" aria-describedby="emailHelp"
+                               disabled>
+                    </div>
+                    <div class="mb-3 mx-auto col-10 col-md-8 col-lg-6">
+                        <label for="deleteInputPassword"><b>Password</b></label>
+                        <input type="text" class="form-control" id="deleteInputPassword" disabled>
+                    </div>
+                    <div class="mb-3 mx-auto col-10 col-md-8 col-lg-6">
+                        <label for="deleteInputState"><b>Role</b></label>
+                        <select id="deleteInputState" multiple size="2" class="form-control" disabled>
+                            <option value="1">USER</option>
+                            <option value="2">ADMIN</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" id="delete-button" class="btn btn-danger" form="inputDeleteForm">Delete
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 </body>
+
 </html>
