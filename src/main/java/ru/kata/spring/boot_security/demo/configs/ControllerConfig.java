@@ -12,5 +12,6 @@ public class ControllerConfig {
     void initBinder(final WebDataBinder binder) {
         binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
     }
-
 }
+
+
